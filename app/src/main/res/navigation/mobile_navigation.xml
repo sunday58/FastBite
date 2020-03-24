@@ -8,13 +8,13 @@
     <fragment
         android:id="@+id/navigation_category"
         android:name="com.sundaydavid.fastBite.ui.category.CategoriesFragment"
-        android:label="@string/title_az"
+        android:label="@string/title_category"
         tools:layout="@layout/fragment_categories" />
 
     <fragment
         android:id="@+id/navigation_az"
         android:name="com.sundaydavid.fastBite.ui.alphabet.AlphabetFragment"
-        android:label="@string/title_category"
+        android:label="@string/title_az"
         tools:layout="@layout/fragment_alphabet" />
 
     <fragment
@@ -22,4 +22,10 @@
         android:name="com.sundaydavid.fastBite.ui.search.SearchFragment"
         android:label="@string/title_search"
         tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/navigation_alphabet_detail"
+        android:name="com.sundaydavid.fastBite.ui.alphabetDetails.AlphabetDetails"
+        android:label=""
+        tools:layout="@layout/fragment_alphabet_details" />
 </navigation>

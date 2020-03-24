@@ -3,4 +3,7 @@
     <string name="title_az">A-Z</string>
     <string name="title_category">Category</string>
     <string name="title_search">Search</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

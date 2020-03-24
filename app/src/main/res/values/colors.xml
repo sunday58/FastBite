@@ -4,4 +4,11 @@
     <color name="colorPrimaryDark">#EC9706</color>
     <color name="colorAccent">#893101</color>
     <color name="white">#FFFFFF</color>
+    <color name="blue">#2686E0</color>
+    <color name="brown">#864665</color>
+    <color name="red">#D62232</color>
+    <color name="pink">#F35DAB</color>
+    <color name="gold">#A09D33</color>
+    <color name="dark_green">#32CD32</color>
+    <color name="text_background">#E1E1E1</color>
 </resources>
