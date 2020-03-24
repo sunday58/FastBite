@@ -9,9 +9,10 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.button.MaterialButton
+import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.sundaydavid.fastBite.R
+
 
 /**
  * A simple [Fragment] subclass.
@@ -45,6 +46,7 @@ class AlphabetDetails : Fragment() {
 
         parentFragment!!.activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
+        setState()
         return  root
     }
 
@@ -53,4 +55,29 @@ class AlphabetDetails : Fragment() {
         parentFragment!!.activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
     }
 
+    private fun setState() {
+        sheetBehavior.setBottomSheetCallback(object : BottomSheetCallback() {
+            override fun onStateChanged(view: View, newState: Int) {
+                when (newState) {
+                    BottomSheetBehavior.STATE_HIDDEN -> {
+                    }
+                    BottomSheetBehavior.STATE_EXPANDED -> {
+
+                    }
+                    BottomSheetBehavior.STATE_COLLAPSED -> {
+
+                    }
+                    BottomSheetBehavior.STATE_DRAGGING -> {
+                    }
+                    BottomSheetBehavior.STATE_SETTLING -> {
+                    }
+                    BottomSheetBehavior.STATE_HALF_EXPANDED -> {
+                        TODO()
+                    }
+                }
+            }
+
+            override fun onSlide(view: View, v: Float) {}
+        })
+    }
 }
