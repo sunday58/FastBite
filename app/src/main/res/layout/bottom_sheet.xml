@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/video_background"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="0dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+
+    <VideoView
+        android:id="@+id/play_video"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/colorPrimary"/>
+
+    <TextView
+        android:id="@+id/type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dessert"
+        android:textSize="18sp"
+        android:layout_marginStart="18dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/colorPrimary"
+        android:fontFamily="@font/lily_script_one"/>
+
+</LinearLayout>

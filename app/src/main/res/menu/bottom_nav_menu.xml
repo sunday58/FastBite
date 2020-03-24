@@ -3,12 +3,12 @@
 
     <item
         android:id="@+id/navigation_az"
-        android:icon="@drawable/ic_sort_by_alpha_black_24dp"
+        android:icon="@drawable/ic_reorder"
         android:title="@string/title_az" />
 
     <item
         android:id="@+id/navigation_category"
-        android:icon="@drawable/ic_shopping_basket_black_24dp"
+        android:icon="@drawable/ic_picnic_basket"
         android:title="@string/title_category" />
 
     <item

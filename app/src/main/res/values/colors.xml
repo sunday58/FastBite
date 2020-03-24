@@ -11,4 +11,5 @@
     <color name="gold">#A09D33</color>
     <color name="dark_green">#32CD32</color>
     <color name="text_background">#E1E1E1</color>
+    <color name="video_background">#808080</color>
 </resources>

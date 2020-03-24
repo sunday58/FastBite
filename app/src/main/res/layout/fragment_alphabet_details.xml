@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,13 +20,14 @@
         android:src="@drawable/food3"/>
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
         android:layout_width="0dp"
         android:layout_height="65dp"
         android:layout_marginStart="65dp"
         android:layout_marginTop="228dp"
         android:layout_marginEnd="65dp"
-        app:cardElevation="8dp"
         app:cardCornerRadius="15dp"
+        app:cardElevation="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/meal_image"
         app:layout_constraintEnd_toEndOf="@+id/meal_image"
         app:layout_constraintHorizontal_bias="0.0"
@@ -37,10 +39,134 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="center"
             android:fontFamily="@font/sanchez"
-            android:textColor="@color/colorAccent"
-            android:text="CHICKEN PEPPER SOUP"/>
+            android:gravity="center"
+            android:text="CHICKEN PEPPER SOUP"
+            android:textColor="@color/colorAccent" />
     </com.google.android.material.card.MaterialCardView>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/frame_shape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:elevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/ingredient_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/sanchez"
+                        android:text="INGREDIENT"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ingredient_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/sanchez"
+                        android:text="Pepper, Maggi, Salt, Vegetable, Goat Meat, Fresh Fish, CrayFish" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="24dp"
+                android:elevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/direction_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/sanchez"
+                        android:text="DIRECTIONS"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/direction_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/sanchez"
+                        android:text="Boil water and wait for 15 minutes.\nDry the chicken for minutes." />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+        </ScrollView>
+    </FrameLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/show_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/youtube"
+        android:tint="@color/white"
+        app:backgroundTint="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include layout="@layout/bottom_sheet"/>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
