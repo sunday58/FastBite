@@ -28,4 +28,10 @@
         android:name="com.sundaydavid.fastBite.ui.alphabetDetails.AlphabetDetails"
         android:label=""
         tools:layout="@layout/fragment_alphabet_details" />
+
+    <fragment
+        android:id="@+id/navigation_alphabet_list"
+        android:name="com.sundaydavid.fastBite.ui.alphabet.AlphabetList"
+        android:label="Meals"
+        tools:layout="@layout/fragment_alphabet_list" />
 </navigation>

@@ -7,7 +7,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.alphabetDetails.AlphabetDetails">
 
-
     <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
         android:id="@+id/meal_image"
         android:layout_width="match_parent"
@@ -150,8 +149,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:src="@drawable/youtube"
-        android:tint="@color/white"
+        android:src="@drawable/ic_youtube"
+        app:tint="@color/white"
         app:backgroundTint="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/frameLayout"
         app:layout_constraintEnd_toEndOf="parent"

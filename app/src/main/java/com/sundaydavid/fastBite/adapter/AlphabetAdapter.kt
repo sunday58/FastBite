@@ -1,6 +1,7 @@
 package com.sundaydavid.fastBite.adapter
 
 import android.graphics.Color
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,9 +40,11 @@ RecyclerView.Adapter<AlphabetAdapter.ViewHolder>(){
         var alphaPosition = 1
         init {
             itemView.setOnClickListener {
-                Snackbar.make(it, alphabetList[adapterPosition].alphabet, Snackbar.LENGTH_SHORT).show()
+//                Snackbar.make(it, alphabetList[adapterPosition].alphabet, Snackbar.LENGTH_SHORT).show()
 
-                Navigation.findNavController(itemView).navigate(R.id.navigation_alphabet_detail)
+                val bundle = Bundle()
+                bundle.putString("meal", alphabetList[adapterPosition].alphabet)
+                Navigation.findNavController(itemView).navigate(R.id.navigation_alphabet_list, bundle)
             }
         }
     }
