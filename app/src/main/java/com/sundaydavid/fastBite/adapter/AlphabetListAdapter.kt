@@ -52,7 +52,7 @@ RecyclerView.Adapter<AlphabetListAdapter.ViewHolder>(){
         fun loadImage( image: String){
            Picasso.get()
                .load(image)
-               .centerCrop()
+               .fit()
                .into(alphaMealImage)
        }
     }

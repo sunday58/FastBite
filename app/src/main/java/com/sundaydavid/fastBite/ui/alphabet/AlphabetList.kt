@@ -60,8 +60,8 @@ class AlphabetList : Fragment() {
             override fun onResponse(call: Call<AlphabetModel>, response: Response<AlphabetModel>) {
 
                 val dataList = ArrayList<AlphabetModel>()
-                dataList.map { response.body() }
-                Log.d("Meals ", dataList.toString())
+                response.body()?.let { dataList.add(it) }
+                Log.d("Meals ", response.body().toString())
 
                 recyclerView.adapter = AlphabetListAdapter(dataList)
                 recyclerView.adapter?.notifyDataSetChanged()
