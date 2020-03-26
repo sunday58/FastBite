@@ -34,4 +34,5 @@
         android:name="com.sundaydavid.fastBite.ui.alphabet.AlphabetList"
         android:label="Meals"
         tools:layout="@layout/fragment_alphabet_list" />
+
 </navigation>

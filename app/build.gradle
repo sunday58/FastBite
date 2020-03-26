@@ -68,4 +68,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.github.siyamed:android-shape-imageview:0.9.3'
     implementation 'androidx.cardview:cardview:1.0.0'
+
+    //youtube player
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.3'
 }

@@ -1,6 +1,7 @@
 package com.sundaydavid.fastBite.adapter
 
 import android.graphics.Color
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import com.sundaydavid.fastBite.R
 import com.sundaydavid.fastBite.model.AlphabetModel
 import com.sundaydavid.fastBite.model.MealAlphabet
 import de.hdodenhof.circleimageview.CircleImageView
+import java.util.ArrayList
 
 class AlphabetListAdapter(private val alphabetList: List<AlphabetModel>) :
 RecyclerView.Adapter<AlphabetListAdapter.ViewHolder>(){
@@ -45,7 +47,10 @@ RecyclerView.Adapter<AlphabetListAdapter.ViewHolder>(){
             itemView.setOnClickListener {
                 Snackbar.make(it, alphabetList[adapterPosition].meals.get(adapterPosition).idMeal, Snackbar.LENGTH_SHORT).show()
 
-                Navigation.findNavController(itemView).navigate(R.id.navigation_alphabet_detail)
+                val bundle = Bundle()
+                bundle.putSerializable("meals", alphabetList[adapterPosition])
+
+                Navigation.findNavController(itemView).navigate(R.id.navigation_alphabet_detail, bundle)
             }
         }
 
