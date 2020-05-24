@@ -1,8 +1,12 @@
 package com.sundaydavid.fastBite.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.Serializable
 
+@Entity
 data class Meal(
+    @PrimaryKey
     val dateModified: Any,
     val idMeal: String,
     val strArea: String,
