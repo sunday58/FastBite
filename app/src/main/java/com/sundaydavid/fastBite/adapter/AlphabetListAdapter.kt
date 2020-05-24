@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
 import android.widget.TextView
 import androidx.navigation.Navigation
 
@@ -34,7 +35,9 @@ RecyclerView.Adapter<AlphabetListAdapter.ViewHolder>(){
         holder.alphabetTitle.text = az.meals[position].strMeal
         holder.alphaMealType.text = az.meals[position].strCategory
         holder.loadImage(az.meals[position].strMealThumb)
+        
     }
+
 
    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -53,6 +56,7 @@ RecyclerView.Adapter<AlphabetListAdapter.ViewHolder>(){
                 Navigation.findNavController(itemView).navigate(R.id.navigation_alphabet_detail, bundle)
             }
         }
+
 
         fun loadImage( image: String){
            Picasso.get()

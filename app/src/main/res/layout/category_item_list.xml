@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        android:padding="4dp"
+        app:cardCornerRadius="360dp">
+        
+        <com.github.siyamed.shapeimageview.CircularImageView
+            android:id="@+id/categoryImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="4dp"
+            android:src="@drawable/food3"/>
+
+        <TextView
+            android:id="@+id/categoryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|start"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/white"
+            android:text="BEEF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/sanchez"/>
+        
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.sundaydavid.fastBite"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -71,4 +71,14 @@ dependencies {
 
     //youtube player
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.3'
+    //progress bar
+    implementation 'com.github.fevziomurtekin:custom-progress-dialog:0.1.0'
+
+    // Coroutines for getting off the UI thread
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.3"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.3"
+
+    // Room database
+    implementation "androidx.room:room-runtime:2.2.5"
+    annotationProcessor "androidx.room:room-compiler:2.2.5"
 }

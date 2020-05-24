@@ -1,4 +1,4 @@
-package com.sundaydavid.fastBite.apiclient
+package com.sundaydavid.fastBite.remoteDatabase
 
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient

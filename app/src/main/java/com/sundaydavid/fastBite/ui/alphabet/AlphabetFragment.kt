@@ -47,15 +47,12 @@ class AlphabetFragment : Fragment() {
         az.add(MealAlphabet("N", "#D62232","Meals that begins with N"))
         az.add(MealAlphabet("O", "#A09D33","Meals that begins with O"))
         az.add(MealAlphabet("P", "#864665","Meals that begins with P"))
-        az.add(MealAlphabet("Q", "#2686E0", "Meals that begins with Q"))
         az.add(MealAlphabet("R", "#32CD32", "Meals that begins with "))
         az.add(MealAlphabet("S", "#F35DAB",  "Meals that begins with S"))
         az.add(MealAlphabet("T", "#D62232", "Meals that begins with T"))
-        az.add(MealAlphabet("U", "#A09D33", "Meals that begins with U"))
+        az.add(MealAlphabet("V", "#A09D33", "Meals that begins with U"))
         az.add(MealAlphabet("W", "#864665", "Meals that begins with W"))
-        az.add(MealAlphabet("X", "#2686E0", "Meals that begins with X"))
         az.add(MealAlphabet("Y", "#32CD32", "Meals that begins with Y"))
-        az.add(MealAlphabet("Z", "#F35DAB", "Meals that begins with Z"))
 
         setData()
         return root

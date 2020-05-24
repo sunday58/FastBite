@@ -9,18 +9,16 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-
 import com.github.siyamed.shapeimageview.mask.PorterShapeImageView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-
 import com.squareup.picasso.Picasso
 import com.sundaydavid.fastBite.R
 import com.sundaydavid.fastBite.model.AlphabetModel
+import java.lang.StringBuilder
 
 
 /**
@@ -84,16 +82,45 @@ class AlphabetDetails : Fragment() {
                 }
             })
 
-            ingredientDetail.setText(MealsDetal.meals[0].strIngredient1 + ", " + MealsDetal.meals[0].strIngredient2
-            + ", " + MealsDetal.meals[0].strIngredient3 + ", " + MealsDetal.meals[0].strIngredient4
-            + ", " + MealsDetal.meals[0].strIngredient5 + ", " + MealsDetal.meals[0].strIngredient6
-            + ", " + MealsDetal.meals[0].strIngredient7 + ", " + MealsDetal.meals[0].strIngredient8
-            + ", " + MealsDetal.meals[0].strIngredient9 + ", " + MealsDetal.meals[0].strIngredient10
-            + ", " + MealsDetal.meals[0].strIngredient11 + ", " + MealsDetal.meals[0].strIngredient12
-            + ", " + MealsDetal.meals[0].strIngredient13 + ", " + MealsDetal.meals[0].strIngredient14
-            + ", " + MealsDetal.meals[0].strIngredient15 + ", " + MealsDetal.meals[0].strIngredient16
-            + ", " + MealsDetal.meals[0].strIngredient17 + ", " + MealsDetal.meals[0].strIngredient18
-            + ", " + MealsDetal.meals[0].strIngredient19 + ", " + MealsDetal.meals[0].strIngredient20)
+            val list: MutableList<String?> = ArrayList()
+
+
+            list.add(MealsDetal.meals[0].strIngredient1 + ", " + MealsDetal.meals[0].strIngredient2
+                    + ", " + MealsDetal.meals[0].strIngredient3 + ", " + MealsDetal.meals[0].strIngredient4
+                    + ", " + MealsDetal.meals[0].strIngredient5 + ", " + MealsDetal.meals[0].strIngredient6
+                    + ", " + MealsDetal.meals[0].strIngredient7 + ", " + MealsDetal.meals[0].strIngredient8
+                    + ", " + MealsDetal.meals[0].strIngredient9 + ", " + MealsDetal.meals[0].strIngredient10
+                    + ", " + MealsDetal.meals[0].strIngredient11 + ", " + MealsDetal.meals[0].strIngredient12
+                    + ", " + MealsDetal.meals[0].strIngredient13 + ", " + MealsDetal.meals[0].strIngredient14
+                    + ", " + MealsDetal.meals[0].strIngredient15 + ", " + MealsDetal.meals[0].strIngredient16
+                    + ", " + MealsDetal.meals[0].strIngredient17 + ", " + MealsDetal.meals[0].strIngredient18
+                    + ", " + MealsDetal.meals[0].strIngredient19 + ", " + MealsDetal.meals[0].strIngredient20)
+
+            val builder = StringBuilder()
+
+            for (value in list) {
+                builder.append(value)
+            }
+
+            val formattedString = builder.toString()
+                .replace("[", "")
+                .replace("]", "")
+                .replace("null", "")
+                .trim()
+
+
+            ingredientDetail.text = formattedString
+
+//            ingredientDetail.setText(MealsDetal.meals[0].strIngredient1 + ", " + MealsDetal.meals[0].strIngredient2
+//            + ", " + MealsDetal.meals[0].strIngredient3 + ", " + MealsDetal.meals[0].strIngredient4
+//            + ", " + MealsDetal.meals[0].strIngredient5 + ", " + MealsDetal.meals[0].strIngredient6
+//            + ", " + MealsDetal.meals[0].strIngredient7 + ", " + MealsDetal.meals[0].strIngredient8
+//            + ", " + MealsDetal.meals[0].strIngredient9 + ", " + MealsDetal.meals[0].strIngredient10
+//            + ", " + MealsDetal.meals[0].strIngredient11 + ", " + MealsDetal.meals[0].strIngredient12
+//            + ", " + MealsDetal.meals[0].strIngredient13 + ", " + MealsDetal.meals[0].strIngredient14
+//            + ", " + MealsDetal.meals[0].strIngredient15 + ", " + MealsDetal.meals[0].strIngredient16
+//            + ", " + MealsDetal.meals[0].strIngredient17 + ", " + MealsDetal.meals[0].strIngredient18
+//            + ", " + MealsDetal.meals[0].strIngredient19 + ", " + MealsDetal.meals[0].strIngredient20)
 
 
         }
