@@ -12,7 +12,7 @@ interface MealDao {
     fun getCategory(): LiveData<List<CategoryModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg meals: CategoryModel)
+    fun insertAll(vararg meals: List<CategoryModel>)
 }
 
 @Database(entities = [CategoryModel::class], version = 1)
