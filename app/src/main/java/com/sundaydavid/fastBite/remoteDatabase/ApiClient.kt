@@ -10,23 +10,11 @@ import retrofit2.converter.gson.GsonConverterFactory
  * Created by David
  */
 object ApiClient {
-     private var BASE_URL: String = "https://www.themealdb.com/"
-     val getClient: ApiInterface
-            get() {
-                val gson = GsonBuilder()
-                    .setLenient()
-                    .create()
-                val interceptor = HttpLoggingInterceptor()
-                interceptor.level = HttpLoggingInterceptor.Level.BODY
-                val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
+    private var BASE_URL: String = "https://www.themealdb.com/"
+    private val retrofit: Retrofit = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
 
-                val retrofit = Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .client(client)
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .build()
-
-                return retrofit.create(ApiInterface::class.java)
-
-            }
+    val getClient: ApiInterface = retrofit.create(ApiInterface::class.java)
 }

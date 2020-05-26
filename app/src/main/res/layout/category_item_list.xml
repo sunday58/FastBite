@@ -10,13 +10,16 @@
         android:layout_height="wrap_content"
         android:elevation="8dp"
         android:padding="4dp"
+        app:strokeColor="@color/colorAccent"
+        app:strokeWidth="2dp"
         app:cardCornerRadius="360dp">
         
-        <com.github.siyamed.shapeimageview.CircularImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/categoryImage"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_margin="4dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/food3"/>
 
         <TextView

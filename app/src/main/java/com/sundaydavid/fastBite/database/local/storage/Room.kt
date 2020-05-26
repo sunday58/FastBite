@@ -3,19 +3,23 @@ package com.sundaydavid.fastBite.database.local.storage
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.sundaydavid.fastBite.model.Category
 import com.sundaydavid.fastBite.model.CategoryModel
+import com.sundaydavid.fastBite.model.TypeConverter
 
 
 @Dao
 interface MealDao {
-    @Query("select * from CategoryModel ")
-    fun getCategory(): LiveData<List<CategoryModel>>
+    @Query("SELECT * FROM categoryMeal ")
+    fun getCategory(): LiveData<CategoryModel>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg meals: List<CategoryModel>)
+    fun insertAll( meals: CategoryModel)
 }
 
-@Database(entities = [CategoryModel::class], version = 1)
+@Database(exportSchema = false,
+    entities = [CategoryModel::class], version = 2)
+@TypeConverters(TypeConverter::class)
 abstract class MealDatabase: RoomDatabase(){
     abstract val mealDao: MealDao
 }
@@ -25,7 +29,8 @@ private lateinit var INSTANCE: MealDatabase
             if (!::INSTANCE.isInitialized) {
                 INSTANCE = Room.databaseBuilder(context.applicationContext,
                 MealDatabase::class.java,
-                "meals").build()
+                "meals").fallbackToDestructiveMigration()
+                    .build()
             }
             return INSTANCE
         }

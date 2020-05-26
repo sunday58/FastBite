@@ -15,7 +15,7 @@ import com.sundaydavid.fastBite.R
 import com.sundaydavid.fastBite.model.CategoryModel
 import de.hdodenhof.circleimageview.CircleImageView
 
-class CategoryAdapter(private val category: ArrayList<CategoryModel>) :
+class CategoryAdapter(private val category: List<CategoryModel>) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>(){
 
 
@@ -38,7 +38,7 @@ class CategoryAdapter(private val category: ArrayList<CategoryModel>) :
     }
     inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val categoryImage: CircularImageView = itemView.findViewById(R.id.categoryImage)
+        val categoryImage: CircleImageView = itemView.findViewById(R.id.categoryImage)
         val categoryName: TextView = itemView.findViewById(R.id.categoryName)
 
         fun loadCategoryImage( image: String){
