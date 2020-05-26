@@ -11,7 +11,7 @@ import com.sundaydavid.fastBite.model.TypeConverter
 @Dao
 interface MealDao {
     @Query("SELECT * FROM categoryMeal ")
-    fun getCategory(): LiveData<CategoryModel>
+    fun getCategory(): LiveData<List<CategoryModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll( meals: CategoryModel)

@@ -15,7 +15,7 @@ RemoteRepository, LocalRepository{
         return api.mealCategory()
     }
 
-    override fun getMealCategory(): LiveData<CategoryModel> {
+    override fun getMealCategory(): LiveData<List<CategoryModel>> {
         return database.mealDao.getCategory()
     }
 

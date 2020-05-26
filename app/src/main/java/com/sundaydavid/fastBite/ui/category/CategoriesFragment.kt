@@ -33,10 +33,8 @@ class CategoriesFragment : Fragment() {
         recyclerView = root.findViewById(R.id.categoryRecyclerView)
 
 
+        categoriesModel.getCategoriesMealLocal().observe(viewLifecycleOwner, Observer { meals ->
 
-        categoriesModel.categoryMeal.observe(viewLifecycleOwner, Observer { meals ->
-//            val meal = ArrayList<CategoryModel>()
-//            meal.add(meals)
             val adapter = CategoryAdapter(meals)
             recyclerView.layoutManager = GridLayoutManager(activity!!.applicationContext,2 )
             recyclerView.adapter = adapter

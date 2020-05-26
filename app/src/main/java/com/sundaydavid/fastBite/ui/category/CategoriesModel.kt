@@ -10,6 +10,7 @@ import com.sundaydavid.fastBite.model.CategoryModel
 import com.sundaydavid.fastBite.remoteDatabase.ApiClient
 import com.sundaydavid.fastBite.remoteDatabase.ApiInterface
 import com.sundaydavid.fastBite.repository.MainRepository
+import com.sundaydavid.fastBite.utility.CategoryMediatorLiveData
 import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,11 +26,11 @@ class CategoriesModel(application: Application) : AndroidViewModel(application) 
     private val repository: MainRepository
 
     //the internal mutable live data
-    private val _categoryMeal = MutableLiveData<List<CategoryModel>>()
+    private val _categoryMeal = MutableLiveData("")
 
     //the external mutable live data
     val categoryMeal: LiveData<List<CategoryModel>>
-    get() = _categoryMeal
+
 
     private val _status = MutableLiveData<CategoryMealStatus>()
     val status: LiveData<CategoryMealStatus>
@@ -42,6 +43,15 @@ class CategoriesModel(application: Application) : AndroidViewModel(application) 
             database
         )
         getCategoryMeal()
+
+       categoryMeal = Transformations.switchMap(CategoryMediatorLiveData(_categoryMeal)) {
+           repository.getMealCategory()
+       }
+
+    }
+
+    fun getCategoriesMealLocal(): LiveData<List<CategoryModel>> {
+        return categoryMeal
     }
 
 
