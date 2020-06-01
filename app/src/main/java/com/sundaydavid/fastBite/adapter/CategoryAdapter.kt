@@ -26,7 +26,7 @@ class CategoryAdapter(private val category: List<CategoryModel>) :
     }
 
     override fun getItemCount(): Int {
-        return category.size
+        return category.count()
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {

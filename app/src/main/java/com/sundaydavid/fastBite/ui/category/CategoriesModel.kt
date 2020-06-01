@@ -54,11 +54,9 @@ class CategoriesModel(application: Application) : AndroidViewModel(application) 
         return categoryMeal
     }
 
-
     private fun getCategoryMeal() {
 
         _status.value = CategoryMealStatus.LOADING
-
 
              repository.getCategory().enqueue(object : Callback<CategoryModel> {
                     override fun onResponse(call: Call<CategoryModel>, response: Response<CategoryModel>) {
@@ -75,8 +73,6 @@ class CategoriesModel(application: Application) : AndroidViewModel(application) 
                         Log.e("CategoryMeal", t.localizedMessage!!)
                     }
                 })
-
-
 
     }
 

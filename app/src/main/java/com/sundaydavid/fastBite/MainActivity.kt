@@ -41,13 +41,15 @@ class MainActivity : AppCompatActivity() {
             val dest = resources.getResourceName(destination.id)
 
             when (destination.id) {
-                R.id.navigation_alphabet_detail -> {
+                R.id.navigation_alphabet_detail,
+                R.id.navigation_alphabet_list -> run {
                     hideCustomToolBar()
                     hideBottomNav()
+                    return@run
                 }
-                R.id.navigation_alphabet_list ->{
-                    hideBottomNav()
+                R.id.navigation_search -> run {
                     hideCustomToolBar()
+                    return@run
                 }
                 else -> {
                     showCustomToolBar()
