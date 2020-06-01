@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Adapter
 import android.widget.LinearLayout
+import android.widget.TextClock
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.github.siyamed.shapeimageview.mask.PorterShapeImageView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
@@ -20,21 +22,29 @@ import com.squareup.picasso.Picasso
 import com.sundaydavid.fastBite.R
 import com.sundaydavid.fastBite.adapter.SearchMealAdapter
 import com.sundaydavid.fastBite.model.AlphabetModel
+import com.sundaydavid.fastBite.model.Meal
 import com.sundaydavid.fastBite.model.SearchModel
+import com.sundaydavid.fastBite.utility.CellClickListener
 import java.lang.StringBuilder
 
 
 /**
  * A simple [Fragment] subclass.
  */
-class AlphabetDetails : Fragment() {
+class AlphabetDetails : Fragment(), CellClickListener {
 
     lateinit var sheetBehavior: BottomSheetBehavior<View>
     lateinit var bottomSheet: LinearLayout
     lateinit var mealImage: PorterShapeImageView
 
-   lateinit var MealsDetal: AlphabetModel
+    lateinit var MealsDetal: AlphabetModel
     lateinit var searchMeal: SearchModel
+    private lateinit var mealTitle: TextView
+    private lateinit var ingredientDetail: TextView
+    private lateinit var directionDetail: TextView
+    private lateinit var playVideo: YouTubePlayerView
+    private lateinit var category: TextView
+
 
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -44,6 +54,7 @@ class AlphabetDetails : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
        val  root = inflater.inflate(R.layout.fragment_alphabet_details, container, false)
+
 
 
         //setting bottom sheet
@@ -59,17 +70,17 @@ class AlphabetDetails : Fragment() {
             }
         }
          mealImage = root.findViewById(R.id.meal_image)
-        val mealTitle = root.findViewById<TextView>(R.id.meal_title)
-        val ingredientDetail = root.findViewById<TextView>(R.id.ingredient_detail)
-        val directionDetail = root.findViewById<TextView>(R.id.direction_detail)
-       val  playVideo = root.findViewById<YouTubePlayerView>(R.id.play_video)
-        val category = root.findViewById<TextView>(R.id.type)
+         mealTitle = root.findViewById(R.id.meal_title)
+        ingredientDetail = root.findViewById(R.id.ingredient_detail)
+        directionDetail = root.findViewById(R.id.direction_detail)
+        playVideo = root.findViewById(R.id.play_video)
+        category = root.findViewById(R.id.type)
         parentFragment!!.activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
 
         //receiving bundle
         if (arguments != null && arguments!!.containsKey("meals")){
-             MealsDetal = arguments!!.getSerializable("meals") as AlphabetModel
+            MealsDetal = arguments!!.getSerializable("meals") as AlphabetModel
 
 
             getImage(MealsDetal.meals[0].strMealThumb)
@@ -166,7 +177,6 @@ class AlphabetDetails : Fragment() {
             ingredientDetail.text = formattedString2
         }
 
-
         setState()
 //        initYouTube()
         return  root
@@ -208,5 +218,10 @@ class AlphabetDetails : Fragment() {
             .load(url)
             .fit()
             .into(mealImage)
+    }
+
+    override fun onCellClickListener(position: Int) {
+
+
     }
 }

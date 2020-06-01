@@ -1,5 +1,6 @@
 package com.sundaydavid.fastBite.ui.search
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,7 @@ import com.sundaydavid.fastBite.adapter.AlphabetListAdapter
 import com.sundaydavid.fastBite.adapter.SearchMealAdapter
 import com.sundaydavid.fastBite.model.SearchModel
 import com.sundaydavid.fastBite.remoteDatabase.ApiClient
+import com.sundaydavid.fastBite.utility.CellClickListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -50,7 +52,8 @@ class SearchFragment : Fragment() {
 //        progress.setdurationTime(100)
 //        progress.show()
 
-        recyclerView.layoutManager = LinearLayoutManager(parentFragment?.context, LinearLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager = LinearLayoutManager(parentFragment?.context,
+            LinearLayoutManager.VERTICAL, false)
 
 
         searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener{
@@ -75,6 +78,7 @@ class SearchFragment : Fragment() {
 
                 if (response.isSuccessful){
                     dataList.add(response.body()!!)
+
                     recyclerView.adapter = SearchMealAdapter(activity!!.applicationContext, dataList)
                     recyclerView.adapter?.notifyDataSetChanged()
 //                    progress.isVisible = false
