@@ -21,9 +21,8 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 import com.squareup.picasso.Picasso
 import com.sundaydavid.fastBite.R
 import com.sundaydavid.fastBite.adapter.SearchMealAdapter
-import com.sundaydavid.fastBite.model.AlphabetModel
-import com.sundaydavid.fastBite.model.Meal
-import com.sundaydavid.fastBite.model.SearchModel
+import com.sundaydavid.fastBite.model.*
+import com.sundaydavid.fastBite.ui.search.SearchFragment
 import com.sundaydavid.fastBite.utility.CellClickListener
 import java.lang.StringBuilder
 
@@ -31,21 +30,19 @@ import java.lang.StringBuilder
 /**
  * A simple [Fragment] subclass.
  */
-class AlphabetDetails : Fragment(), CellClickListener {
+class AlphabetDetails : Fragment() {
 
     lateinit var sheetBehavior: BottomSheetBehavior<View>
     lateinit var bottomSheet: LinearLayout
     lateinit var mealImage: PorterShapeImageView
 
-    lateinit var MealsDetal: AlphabetModel
-    lateinit var searchMeal: SearchModel
+    lateinit var MealsDetal: AlphabetData
+    lateinit var searchMeal: SearchData
     private lateinit var mealTitle: TextView
     private lateinit var ingredientDetail: TextView
     private lateinit var directionDetail: TextView
     private lateinit var playVideo: YouTubePlayerView
     private lateinit var category: TextView
-
-
 
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreateView(
@@ -53,8 +50,7 @@ class AlphabetDetails : Fragment(), CellClickListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-       val  root = inflater.inflate(R.layout.fragment_alphabet_details, container, false)
-
+        val root = inflater.inflate(R.layout.fragment_alphabet_details, container, false)
 
 
         //setting bottom sheet
@@ -63,14 +59,14 @@ class AlphabetDetails : Fragment(), CellClickListener {
 
         val btnBottomSheet = root.findViewById<FloatingActionButton>(R.id.show_video)
         btnBottomSheet.setOnClickListener {
-            if (sheetBehavior.state != BottomSheetBehavior.STATE_EXPANDED){
+            if (sheetBehavior.state != BottomSheetBehavior.STATE_EXPANDED) {
                 sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-            }else {
-             sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            } else {
+                sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
             }
         }
-         mealImage = root.findViewById(R.id.meal_image)
-         mealTitle = root.findViewById(R.id.meal_title)
+        mealImage = root.findViewById(R.id.meal_image)
+        mealTitle = root.findViewById(R.id.meal_title)
         ingredientDetail = root.findViewById(R.id.ingredient_detail)
         directionDetail = root.findViewById(R.id.direction_detail)
         playVideo = root.findViewById(R.id.play_video)
@@ -79,37 +75,39 @@ class AlphabetDetails : Fragment(), CellClickListener {
 
 
         //receiving bundle
-        if (arguments != null && arguments!!.containsKey("meals")){
-            MealsDetal = arguments!!.getSerializable("meals") as AlphabetModel
+        if (arguments != null && arguments!!.containsKey("meals")) {
+            MealsDetal = arguments!!.getSerializable("meals") as AlphabetData
 
 
-            getImage(MealsDetal.meals[0].strMealThumb)
-            mealTitle.setText(MealsDetal.meals[0].strMeal)
-            category.setText(MealsDetal.meals[0].strCategory)
-            directionDetail.setText(MealsDetal.meals[0].strInstructions)
+            getImage(MealsDetal.alphabetModel.meals[MealsDetal.position].strMealThumb)
+            mealTitle.setText(MealsDetal.alphabetModel.meals[MealsDetal.position].strMeal)
+            category.setText(MealsDetal.alphabetModel.meals[MealsDetal.position].strCategory)
+            directionDetail.setText(MealsDetal.alphabetModel.meals[MealsDetal.position].strInstructions)
 
             //setting up video
             playVideo.getPlayerUiController().showFullscreenButton(false)
-            playVideo.addYouTubePlayerListener(object : AbstractYouTubePlayerListener(){
+            playVideo.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
                 override fun onReady(youTubePlayer: com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer) {
                     super.onReady(youTubePlayer)
-                    youTubePlayer.cueVideo(MealsDetal.meals[0].strYoutube, 0f)
+                    youTubePlayer.cueVideo(MealsDetal.alphabetModel.meals[MealsDetal.position].strYoutube, 0f)
                 }
             })
 
             val list: MutableList<String?> = ArrayList()
 
+            list.add(
+                MealsDetal.alphabetModel.meals[MealsDetal.position].strIngredient1 + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position].strIngredient2
+                        + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position] + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position].strIngredient4
+                        + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position] + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position].strIngredient6
+                        + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position] + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position].strIngredient8
+                        + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position] + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position].strIngredient10
+                        + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position] + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position].strIngredient12
+                        + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position] + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position].strIngredient14
+                        + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position] + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position].strIngredient16
+                        + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position] + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position].strIngredient18
+                        + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position] + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position].strIngredient20
+            )
 
-            list.add(MealsDetal.meals[0].strIngredient1 + ", " + MealsDetal.meals[0].strIngredient2
-                    + ", " + MealsDetal.meals[0].strIngredient3 + ", " + MealsDetal.meals[0].strIngredient4
-                    + ", " + MealsDetal.meals[0].strIngredient5 + ", " + MealsDetal.meals[0].strIngredient6
-                    + ", " + MealsDetal.meals[0].strIngredient7 + ", " + MealsDetal.meals[0].strIngredient8
-                    + ", " + MealsDetal.meals[0].strIngredient9 + ", " + MealsDetal.meals[0].strIngredient10
-                    + ", " + MealsDetal.meals[0].strIngredient11 + ", " + MealsDetal.meals[0].strIngredient12
-                    + ", " + MealsDetal.meals[0].strIngredient13 + ", " + MealsDetal.meals[0].strIngredient14
-                    + ", " + MealsDetal.meals[0].strIngredient15 + ", " + MealsDetal.meals[0].strIngredient16
-                    + ", " + MealsDetal.meals[0].strIngredient17 + ", " + MealsDetal.meals[0].strIngredient18
-                    + ", " + MealsDetal.meals[0].strIngredient19 + ", " + MealsDetal.meals[0].strIngredient20)
 
             val builder = StringBuilder()
 
@@ -127,39 +125,40 @@ class AlphabetDetails : Fragment(), CellClickListener {
             ingredientDetail.text = formattedString
 
 
-        }
-        else {
+        } else {
             //for search
-            searchMeal = arguments!!.getSerializable("searchMeals") as SearchModel
+            searchMeal = arguments!!.getSerializable("searchMeals") as SearchData
 
 
-            getImage(searchMeal.meals[0].strMealThumb)
-            mealTitle.setText(searchMeal.meals[0].strMeal)
-            category.setText(searchMeal.meals[0].strCategory)
-            directionDetail.setText(searchMeal.meals[0].strInstructions)
+            getImage(searchMeal.searchModel.meals[searchMeal.position].strMealThumb)
+            mealTitle.text = searchMeal.searchModel.meals[searchMeal.position].strMeal
+            category.text = searchMeal.searchModel.meals[searchMeal.position].strCategory
+            directionDetail.text = searchMeal.searchModel.meals[searchMeal.position].strInstructions
 
             //setting up video
             playVideo.getPlayerUiController().showFullscreenButton(false)
-            playVideo.addYouTubePlayerListener(object : AbstractYouTubePlayerListener(){
+            playVideo.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
                 override fun onReady(youTubePlayer: com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer) {
                     super.onReady(youTubePlayer)
-                    youTubePlayer.cueVideo(searchMeal.meals[0].strYoutube, 0f)
+                    youTubePlayer.cueVideo(searchMeal.searchModel.meals[searchMeal.position].strYoutube, 0f)
                 }
             })
 
             val list2: MutableList<String?> = ArrayList()
 
 
-            list2.add(searchMeal.meals[0].strIngredient1 + ", " + searchMeal.meals[0].strIngredient2
-                    + ", " + searchMeal.meals[0].strIngredient3 + ", " + searchMeal.meals[0].strIngredient4
-                    + ", " + searchMeal.meals[0].strIngredient5 + ", " + searchMeal.meals[0].strIngredient6
-                    + ", " + searchMeal.meals[0].strIngredient7 + ", " + searchMeal.meals[0].strIngredient8
-                    + ", " + searchMeal.meals[0].strIngredient9 + ", " + searchMeal.meals[0].strIngredient10
-                    + ", " + searchMeal.meals[0].strIngredient11 + ", " + searchMeal.meals[0].strIngredient12
-                    + ", " + searchMeal.meals[0].strIngredient13 + ", " + searchMeal.meals[0].strIngredient14
-                    + ", " + searchMeal.meals[0].strIngredient15 + ", " + searchMeal.meals[0].strIngredient16
-                    + ", " + searchMeal.meals[0].strIngredient17 + ", " + searchMeal.meals[0].strIngredient18
-                    + ", " + searchMeal.meals[0].strIngredient19 + ", " + searchMeal.meals[0].strIngredient20)
+            list2.add(
+                searchMeal.searchModel.meals[searchMeal.position].strIngredient1 + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient2
+                        + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient3 + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient4
+                        + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient5 + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient6
+                        + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient7 + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient8
+                        + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient9 + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient10
+                        + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient11 + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient12
+                        + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient13 + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient14
+                        + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient15 + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient16
+                        + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient17 + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient18
+                        + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient19 + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient20
+            )
 
             val builder2 = StringBuilder()
 
@@ -173,18 +172,18 @@ class AlphabetDetails : Fragment(), CellClickListener {
                 .replace("null", "")
                 .trim()
 
-
             ingredientDetail.text = formattedString2
         }
 
         setState()
 //        initYouTube()
-        return  root
+        return root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        parentFragment!!.activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+        parentFragment!!.activity?.requestedOrientation =
+            ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
     }
 
     private fun setState() {
@@ -213,15 +212,10 @@ class AlphabetDetails : Fragment(), CellClickListener {
         })
     }
 
-    private fun getImage(url: String){
+    private fun getImage(url: String) {
         Picasso.get()
             .load(url)
             .fit()
             .into(mealImage)
-    }
-
-    override fun onCellClickListener(position: Int) {
-
-
     }
 }

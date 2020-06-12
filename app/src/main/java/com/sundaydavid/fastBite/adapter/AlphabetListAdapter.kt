@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import com.sundaydavid.fastBite.R
+import com.sundaydavid.fastBite.model.AlphabetData
 import com.sundaydavid.fastBite.model.AlphabetModel
 import com.sundaydavid.fastBite.model.MealAlphabet
 import de.hdodenhof.circleimageview.CircleImageView
@@ -45,13 +46,13 @@ RecyclerView.Adapter<AlphabetListAdapter.ViewHolder>(){
         val alphaMealType: TextView = itemView.findViewById(R.id.az_meal_type)
         val alphaMealImage: CircleImageView = itemView.findViewById(R.id.az_image)
 
-        var alphaPosition = 1
         init {
             itemView.setOnClickListener {
                 Snackbar.make(it, alphabetList[adapterPosition].meals.get(adapterPosition).idMeal, Snackbar.LENGTH_SHORT).show()
 
                 val bundle = Bundle()
-                bundle.putSerializable("meals", alphabetList[adapterPosition])
+                val data = AlphabetData(alphabetList[adapterPosition], adapterPosition)
+                bundle.putSerializable("meals", data)
 
                 Navigation.findNavController(itemView).navigate(R.id.navigation_alphabet_detail, bundle)
             }

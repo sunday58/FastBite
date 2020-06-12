@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import com.sundaydavid.fastBite.R
+import com.sundaydavid.fastBite.model.SearchData
 import com.sundaydavid.fastBite.model.SearchModel
 import com.sundaydavid.fastBite.utility.CellClickListener
 import de.hdodenhof.circleimageview.CircleImageView
@@ -21,27 +22,24 @@ class SearchMealAdapter(private val context: Context,
                         private val list: ArrayList<SearchModel>)
     : RecyclerView.Adapter<SearchMealAdapter.ViewHolder>() {
 
-    companion object {
-        var mClickListener: CellClickListener? = null
-    }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
             val data = list[position]
 
-            holder.loadSearchImage(data.meals[position].strMealThumb)
-            holder.searchTitle.text = data.meals[position].strMeal
-            holder.searchType.text = data.meals[position].strCategory
+                holder.loadSearchImage(data.meals[position].strMealThumb)
+                holder.searchTitle.text = data.meals[position].strMeal
+                holder.searchType.text = data.meals[position].strCategory
 
-        holder.itemView.setOnClickListener{
-            mClickListener?.onCellClickListener(position)
+                holder.itemView.setOnClickListener {
 
-                val bundle = Bundle()
-                bundle.putSerializable("searchMeals", list[holder.adapterPosition])
+                    val bundle = Bundle()
+                    val da = SearchData(list[holder.adapterPosition], holder.adapterPosition)
+                    bundle.putSerializable("searchMeals", da)
 
-                Navigation.findNavController(holder.itemView)
-                    .navigate(R.id.navigation_alphabet_detail, bundle)
-        }
+                    Navigation.findNavController(holder.itemView)
+                        .navigate(R.id.navigation_alphabet_detail, bundle)
+                }
+
 
     }
 
