@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.navigation_search -> run {
                     hideCustomToolBar()
+                    showBottomNav()
                     return@run
                 }
                 else -> {

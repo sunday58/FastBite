@@ -73,7 +73,6 @@ class AlphabetDetails : Fragment() {
         category = root.findViewById(R.id.type)
         parentFragment!!.activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-
         //receiving bundle
         if (arguments != null && arguments!!.containsKey("meals")) {
             MealsDetal = arguments!!.getSerializable("meals") as AlphabetData

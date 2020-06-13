@@ -19,6 +19,7 @@ import com.sundaydavid.fastBite.R
 import com.sundaydavid.fastBite.adapter.AlphabetListAdapter
 import com.sundaydavid.fastBite.remoteDatabase.ApiClient
 import com.sundaydavid.fastBite.model.AlphabetModel
+import com.sundaydavid.fastBite.model.Meal
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,7 +32,6 @@ class AlphabetList : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: AlphabetListAdapter
     private lateinit var progress: Dialog
-
 
 
     override fun onCreateView(
@@ -69,9 +69,9 @@ class AlphabetList : Fragment() {
 
             override fun onResponse(call: Call<AlphabetModel>, response: Response<AlphabetModel>) {
 
-                val dataList = ArrayList<AlphabetModel>()
-//                response.body()?.let { dataList.add(it) }
-                dataList.add(response.body()!!)
+                val dataList = ArrayList<Meal>()
+//                response.body()?.meals.let { dataList.add(it) }
+                dataList += (response.body()!!.meals)
                 Log.d("Meals ", response.body().toString())
 
                 recyclerView.adapter = AlphabetListAdapter(dataList)
@@ -90,5 +90,6 @@ class AlphabetList : Fragment() {
         }
 
     }
+
 
 

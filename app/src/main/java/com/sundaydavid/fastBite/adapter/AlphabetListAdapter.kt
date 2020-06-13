@@ -15,11 +15,12 @@ import com.squareup.picasso.Picasso
 import com.sundaydavid.fastBite.R
 import com.sundaydavid.fastBite.model.AlphabetData
 import com.sundaydavid.fastBite.model.AlphabetModel
+import com.sundaydavid.fastBite.model.Meal
 import com.sundaydavid.fastBite.model.MealAlphabet
 import de.hdodenhof.circleimageview.CircleImageView
 import java.util.ArrayList
 
-class AlphabetListAdapter(private val alphabetList: List<AlphabetModel>) :
+class AlphabetListAdapter(private val alphabetList: ArrayList<Meal>) :
 RecyclerView.Adapter<AlphabetListAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -33,9 +34,9 @@ RecyclerView.Adapter<AlphabetListAdapter.ViewHolder>(){
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val az = alphabetList[position]
-        holder.alphabetTitle.text = az.meals[position].strMeal
-        holder.alphaMealType.text = az.meals[position].strCategory
-        holder.loadImage(az.meals[position].strMealThumb)
+        holder.alphabetTitle.text = az.strMeal
+        holder.alphaMealType.text = az.strCategory
+        holder.loadImage(az.strMealThumb)
         
     }
 
@@ -48,13 +49,13 @@ RecyclerView.Adapter<AlphabetListAdapter.ViewHolder>(){
 
         init {
             itemView.setOnClickListener {
-                Snackbar.make(it, alphabetList[adapterPosition].meals.get(adapterPosition).idMeal, Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(it, alphabetList[adapterPosition].idMeal, Snackbar.LENGTH_SHORT).show()
 
-                val bundle = Bundle()
-                val data = AlphabetData(alphabetList[adapterPosition], adapterPosition)
-                bundle.putSerializable("meals", data)
-
-                Navigation.findNavController(itemView).navigate(R.id.navigation_alphabet_detail, bundle)
+//                val bundle = Bundle()
+//                val data = AlphabetData(alphabetList[adapterPosition], adapterPosition)
+//                bundle.putSerializable("meals", data)
+//
+//                Navigation.findNavController(itemView).navigate(R.id.navigation_alphabet_detail, bundle)
             }
         }
 
