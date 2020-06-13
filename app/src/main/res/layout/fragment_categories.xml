@@ -23,6 +23,7 @@
             android:id="@+id/categoryRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="54dp"
             tools:listitem="@layout/category_item_list"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
 

@@ -5,21 +5,21 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.sundaydavid.fastBite.model.Category
 import com.sundaydavid.fastBite.model.CategoryModel
+import com.sundaydavid.fastBite.model.Meal
 import com.sundaydavid.fastBite.model.TypeConverter
 
 
 @Dao
 interface MealDao {
-    @Query("SELECT * FROM categoryMeal ")
-    fun getCategory(): LiveData<List<CategoryModel>>
+    @Query("SELECT * FROM category ")
+    fun getCategory(): LiveData<List<Category>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll( meals: CategoryModel)
+    fun insertAll( meals: List<Category>)
 }
 
 @Database(exportSchema = false,
-    entities = [CategoryModel::class], version = 2)
-@TypeConverters(TypeConverter::class)
+    entities = [Category::class], version = 3)
 abstract class MealDatabase: RoomDatabase(){
     abstract val mealDao: MealDao
 }

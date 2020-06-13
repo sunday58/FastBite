@@ -5,6 +5,7 @@ import androidx.lifecycle.Transformations
 import com.sundaydavid.fastBite.database.local.storage.MealDatabase
 import com.sundaydavid.fastBite.model.Category
 import com.sundaydavid.fastBite.model.CategoryModel
+import com.sundaydavid.fastBite.model.Meal
 import com.sundaydavid.fastBite.model.SearchModel
 import com.sundaydavid.fastBite.remoteDatabase.ApiClient
 import com.sundaydavid.fastBite.remoteDatabase.ApiInterface
@@ -17,11 +18,11 @@ RemoteRepository, LocalRepository{
     }
 
 
-    override fun getMealCategory(): LiveData<List<CategoryModel>> {
+    override fun getMealCategory(): LiveData<List<Category>> {
         return database.mealDao.getCategory()
     }
 
-    override suspend fun setMealCategory(meals: CategoryModel) {
+    override suspend fun setMealCategory(meals: List<Category>) {
       database.mealDao.insertAll(meals)
     }
 

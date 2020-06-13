@@ -6,7 +6,9 @@ import androidx.lifecycle.*
 import com.sundaydavid.fastBite.database.local.storage.MealDao
 import com.sundaydavid.fastBite.database.local.storage.MealDatabase
 import com.sundaydavid.fastBite.database.local.storage.getDatabase
+import com.sundaydavid.fastBite.model.Category
 import com.sundaydavid.fastBite.model.CategoryModel
+import com.sundaydavid.fastBite.model.Meal
 import com.sundaydavid.fastBite.remoteDatabase.ApiClient
 import com.sundaydavid.fastBite.remoteDatabase.ApiInterface
 import com.sundaydavid.fastBite.repository.MainRepository
@@ -29,7 +31,7 @@ class CategoriesModel(application: Application) : AndroidViewModel(application) 
     private val _categoryMeal = MutableLiveData("")
 
     //the external mutable live data
-    val categoryMeal: LiveData<List<CategoryModel>>
+    val categoryMeal: LiveData<List<Category>>
 
 
     private val _status = MutableLiveData<CategoryMealStatus>()
@@ -50,7 +52,7 @@ class CategoriesModel(application: Application) : AndroidViewModel(application) 
 
     }
 
-    fun getCategoriesMealLocal(): LiveData<List<CategoryModel>> {
+    fun getCategoriesMealLocal(): LiveData<List<Category>> {
         return categoryMeal
     }
 
@@ -63,7 +65,7 @@ class CategoriesModel(application: Application) : AndroidViewModel(application) 
                         _status.value = CategoryMealStatus.DONE
 
                         viewModelScope.launch {
-                            response.body()!!.let { repository.setMealCategory(it) }
+                            response.body()!!.categories.let { repository.setMealCategory(it) }
 
                         }
                     }

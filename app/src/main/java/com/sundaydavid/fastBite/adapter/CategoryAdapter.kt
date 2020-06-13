@@ -12,10 +12,11 @@ import com.github.siyamed.shapeimageview.ShapeImageView
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.squareup.picasso.Picasso
 import com.sundaydavid.fastBite.R
+import com.sundaydavid.fastBite.model.Category
 import com.sundaydavid.fastBite.model.CategoryModel
 import de.hdodenhof.circleimageview.CircleImageView
 
-class CategoryAdapter(private val category: List<CategoryModel>) :
+class CategoryAdapter(private val category: List<Category>) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>(){
 
 
@@ -32,8 +33,8 @@ class CategoryAdapter(private val category: List<CategoryModel>) :
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val mealCategory = category[position]
 
-        holder.loadCategoryImage(mealCategory.categories[position].strCategoryThumb)
-        holder.categoryName.text = mealCategory.categories[position].strCategory
+        holder.loadCategoryImage(mealCategory.strCategoryThumb)
+        holder.categoryName.text = mealCategory.strCategory
 
     }
     inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
