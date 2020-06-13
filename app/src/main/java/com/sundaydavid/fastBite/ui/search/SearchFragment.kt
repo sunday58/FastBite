@@ -20,6 +20,7 @@ import com.fevziomurtekin.customprogress.Type
 import com.sundaydavid.fastBite.R
 import com.sundaydavid.fastBite.adapter.AlphabetListAdapter
 import com.sundaydavid.fastBite.adapter.SearchMealAdapter
+import com.sundaydavid.fastBite.model.Meal
 import com.sundaydavid.fastBite.model.SearchModel
 import com.sundaydavid.fastBite.remoteDatabase.ApiClient
 import com.sundaydavid.fastBite.utility.CellClickListener
@@ -33,7 +34,7 @@ class SearchFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: androidx.appcompat.widget.SearchView
 //    private lateinit var progress: Dialog
-    val  dataList = ArrayList<SearchModel>()
+    val  dataList = ArrayList<Meal>()
 
 
     override fun onCreateView(
@@ -58,13 +59,13 @@ class SearchFragment : Fragment() {
 
         searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                getMealList(query!!)
-                return true
+               return false
 
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                return false
+                getMealList(newText!!)
+                return true
             }
         })
 
@@ -77,7 +78,7 @@ class SearchFragment : Fragment() {
             override fun onResponse(call: Call<SearchModel>, response: Response<SearchModel>) {
 
                 if (response.isSuccessful){
-                    dataList.add(response.body()!!)
+                    dataList += response.body()!!.meals
 
                     recyclerView.adapter = SearchMealAdapter(activity!!.applicationContext, dataList)
                     recyclerView.adapter?.notifyDataSetChanged()

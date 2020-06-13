@@ -50,7 +50,7 @@
                 app:defaultQueryHint="Search meal"
                 app:iconifiedByDefault="false"
                 app:queryBackground="@android:color/transparent"
-                app:queryHint="Search meal" />
+                app:queryHint="A - Z" />
         </LinearLayout>
 
     </FrameLayout>

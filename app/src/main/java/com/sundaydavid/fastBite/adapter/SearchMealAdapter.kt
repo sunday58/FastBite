@@ -13,31 +13,32 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import com.sundaydavid.fastBite.R
+import com.sundaydavid.fastBite.model.Meal
 import com.sundaydavid.fastBite.model.SearchData
 import com.sundaydavid.fastBite.model.SearchModel
 import com.sundaydavid.fastBite.utility.CellClickListener
 import de.hdodenhof.circleimageview.CircleImageView
 
 class SearchMealAdapter(private val context: Context,
-                        private val list: ArrayList<SearchModel>)
+                        private val list: ArrayList<Meal>)
     : RecyclerView.Adapter<SearchMealAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
             val data = list[position]
 
-                holder.loadSearchImage(data.meals[position].strMealThumb)
-                holder.searchTitle.text = data.meals[position].strMeal
-                holder.searchType.text = data.meals[position].strCategory
+                holder.loadSearchImage(data.strMealThumb)
+                holder.searchTitle.text = data.strMeal
+                holder.searchType.text = data.strCategory
 
                 holder.itemView.setOnClickListener {
 
-                    val bundle = Bundle()
-                    val da = SearchData(list[holder.adapterPosition], holder.adapterPosition)
-                    bundle.putSerializable("searchMeals", da)
-
-                    Navigation.findNavController(holder.itemView)
-                        .navigate(R.id.navigation_alphabet_detail, bundle)
+//                    val bundle = Bundle()
+//                    val da = SearchData(list[holder.adapterPosition], holder.adapterPosition)
+//                    bundle.putSerializable("searchMeals", da)
+//
+//                    Navigation.findNavController(holder.itemView)
+//                        .navigate(R.id.navigation_alphabet_detail, bundle)
                 }
 
 
