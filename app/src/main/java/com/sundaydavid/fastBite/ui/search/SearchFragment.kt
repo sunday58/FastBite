@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ListAdapter
 import android.widget.SearchView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
@@ -77,7 +78,7 @@ class SearchFragment : Fragment() {
         ApiClient.getClient.SearchMeal(meal).enqueue(object : Callback<SearchModel> {
             override fun onResponse(call: Call<SearchModel>, response: Response<SearchModel>) {
 
-                if (response.isSuccessful){
+                if (response.isSuccessful && response.body() != null){
                     dataList += response.body()!!.meals
 
                     recyclerView.adapter = SearchMealAdapter(activity!!.applicationContext, dataList)
@@ -85,8 +86,9 @@ class SearchFragment : Fragment() {
 //                    progress.isVisible = false
                 }
 
-                else
-                    response.errorBody()
+                else {
+                    Toast.makeText(context, "Item not found", Toast.LENGTH_SHORT).show()
+                }
             }
 
             override fun onFailure(call: Call<SearchModel>, t: Throwable) {
