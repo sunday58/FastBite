@@ -11,4 +11,4 @@ data class Category(
     val strCategory: String,
     val strCategoryDescription: String,
     val strCategoryThumb: String
-)
+):Serializable

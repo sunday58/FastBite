@@ -33,12 +33,11 @@ class SearchMealAdapter(private val context: Context,
 
                 holder.itemView.setOnClickListener {
 
-//                    val bundle = Bundle()
-//                    val da = SearchData(list[holder.adapterPosition], holder.adapterPosition)
-//                    bundle.putSerializable("searchMeals", da)
-//
-//                    Navigation.findNavController(holder.itemView)
-//                        .navigate(R.id.navigation_alphabet_detail, bundle)
+                    val bundle = Bundle()
+                    bundle.putSerializable("searchMeals", data)
+
+                    Navigation.findNavController(holder.itemView)
+                        .navigate(R.id.navigation_alphabet_detail, bundle)
                 }
 
 

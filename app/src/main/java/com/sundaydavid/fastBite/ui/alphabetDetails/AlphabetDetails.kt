@@ -36,8 +36,8 @@ class AlphabetDetails : Fragment() {
     lateinit var bottomSheet: LinearLayout
     lateinit var mealImage: PorterShapeImageView
 
-    lateinit var MealsDetal: AlphabetData
-    lateinit var searchMeal: SearchData
+    lateinit var MealsDetal: Meal
+    lateinit var searchMeal: Meal
     private lateinit var mealTitle: TextView
     private lateinit var ingredientDetail: TextView
     private lateinit var directionDetail: TextView
@@ -75,36 +75,36 @@ class AlphabetDetails : Fragment() {
 
         //receiving bundle
         if (arguments != null && arguments!!.containsKey("meals")) {
-            MealsDetal = arguments!!.getSerializable("meals") as AlphabetData
+            MealsDetal = arguments!!.getSerializable("meals") as Meal
 
 
-            getImage(MealsDetal.alphabetModel.meals[MealsDetal.position].strMealThumb)
-            mealTitle.setText(MealsDetal.alphabetModel.meals[MealsDetal.position].strMeal)
-            category.setText(MealsDetal.alphabetModel.meals[MealsDetal.position].strCategory)
-            directionDetail.setText(MealsDetal.alphabetModel.meals[MealsDetal.position].strInstructions)
+            getImage(MealsDetal.strMealThumb)
+            mealTitle.text = MealsDetal.strMeal
+            category.setText(MealsDetal.strCategory)
+            directionDetail.setText(MealsDetal.strInstructions)
 
             //setting up video
             playVideo.getPlayerUiController().showFullscreenButton(false)
             playVideo.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
                 override fun onReady(youTubePlayer: com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer) {
                     super.onReady(youTubePlayer)
-                    youTubePlayer.cueVideo(MealsDetal.alphabetModel.meals[MealsDetal.position].strYoutube, 0f)
+                    youTubePlayer.cueVideo(MealsDetal.strYoutube, 0f)
                 }
             })
 
             val list: MutableList<String?> = ArrayList()
 
             list.add(
-                MealsDetal.alphabetModel.meals[MealsDetal.position].strIngredient1 + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position].strIngredient2
-                        + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position] + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position].strIngredient4
-                        + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position] + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position].strIngredient6
-                        + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position] + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position].strIngredient8
-                        + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position] + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position].strIngredient10
-                        + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position] + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position].strIngredient12
-                        + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position] + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position].strIngredient14
-                        + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position] + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position].strIngredient16
-                        + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position] + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position].strIngredient18
-                        + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position] + ", " + MealsDetal.alphabetModel.meals[MealsDetal.position].strIngredient20
+                MealsDetal.strIngredient1 + ", " + MealsDetal.strIngredient2
+                        + ", " + MealsDetal.strIngredient5 + ", " + MealsDetal.strIngredient4
+                        + ", " + MealsDetal.strIngredient7 + ", " + MealsDetal.strIngredient6
+                        + ", " + MealsDetal.strIngredient9 + ", " + MealsDetal.strIngredient8
+                        + ", " + MealsDetal.strIngredient11 + ", " + MealsDetal.strIngredient10
+                        + ", " + MealsDetal.strIngredient13 + ", " + MealsDetal.strIngredient12
+                        + ", " + MealsDetal.strIngredient15 + ", " + MealsDetal.strIngredient14
+                        + ", " + MealsDetal.strIngredient17 + ", " + MealsDetal.strIngredient16
+                        + ", " + MealsDetal.strIngredient19 + ", " + MealsDetal.strIngredient18
+                        + ", " + MealsDetal.strIngredient3 + ", " + MealsDetal.strIngredient20
             )
 
 
@@ -126,20 +126,23 @@ class AlphabetDetails : Fragment() {
 
         } else {
             //for search
-            searchMeal = arguments!!.getSerializable("searchMeals") as SearchData
+            searchMeal = arguments!!.getSerializable("searchMeals") as Meal
 
 
-            getImage(searchMeal.searchModel.meals[searchMeal.position].strMealThumb)
-            mealTitle.text = searchMeal.searchModel.meals[searchMeal.position].strMeal
-            category.text = searchMeal.searchModel.meals[searchMeal.position].strCategory
-            directionDetail.text = searchMeal.searchModel.meals[searchMeal.position].strInstructions
+            getImage(searchMeal.strMealThumb)
+            mealTitle.text = searchMeal.strMeal
+            category.text = searchMeal.strCategory
+            directionDetail.text = searchMeal.strInstructions
 
             //setting up video
             playVideo.getPlayerUiController().showFullscreenButton(false)
             playVideo.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
                 override fun onReady(youTubePlayer: com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer) {
                     super.onReady(youTubePlayer)
-                    youTubePlayer.cueVideo(searchMeal.searchModel.meals[searchMeal.position].strYoutube, 0f)
+                    youTubePlayer.cueVideo(
+                        searchMeal.strYoutube,
+                        0f
+                    )
                 }
             })
 
@@ -147,16 +150,16 @@ class AlphabetDetails : Fragment() {
 
 
             list2.add(
-                searchMeal.searchModel.meals[searchMeal.position].strIngredient1 + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient2
-                        + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient3 + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient4
-                        + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient5 + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient6
-                        + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient7 + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient8
-                        + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient9 + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient10
-                        + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient11 + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient12
-                        + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient13 + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient14
-                        + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient15 + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient16
-                        + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient17 + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient18
-                        + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient19 + ", " + searchMeal.searchModel.meals[searchMeal.position].strIngredient20
+                searchMeal.strIngredient1 + ", " + searchMeal.strIngredient2
+                        + ", " + searchMeal.strIngredient3 + ", " + searchMeal.strIngredient4
+                        + ", " + searchMeal.strIngredient5 + ", " + searchMeal.strIngredient6
+                        + ", " + searchMeal.strIngredient7 + ", " + searchMeal.strIngredient8
+                        + ", " + searchMeal.strIngredient9 + ", " + searchMeal.strIngredient10
+                        + ", " + searchMeal.strIngredient11 + ", " + searchMeal.strIngredient12
+                        + ", " + searchMeal.strIngredient13 + ", " + searchMeal.strIngredient14
+                        + ", " + searchMeal.strIngredient15 + ", " + searchMeal.strIngredient16
+                        + ", " + searchMeal.strIngredient17 + ", " + searchMeal.strIngredient18
+                        + ", " + searchMeal.strIngredient19 + ", " + searchMeal.strIngredient20
             )
 
             val builder2 = StringBuilder()
@@ -172,49 +175,53 @@ class AlphabetDetails : Fragment() {
                 .trim()
 
             ingredientDetail.text = formattedString2
-        }
 
+
+
+        }
         setState()
 //        initYouTube()
         return root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        parentFragment!!.activity?.requestedOrientation =
-            ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-    }
+        override fun onDestroyView() {
+            super.onDestroyView()
+            parentFragment!!.activity?.requestedOrientation =
+                ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+        }
 
-    private fun setState() {
-        sheetBehavior.setBottomSheetCallback(object : BottomSheetCallback() {
-            override fun onStateChanged(view: View, newState: Int) {
-                when (newState) {
-                    BottomSheetBehavior.STATE_HIDDEN -> {
-                    }
-                    BottomSheetBehavior.STATE_EXPANDED -> {
+        private fun setState() {
+            sheetBehavior.setBottomSheetCallback(object : BottomSheetCallback() {
+                override fun onStateChanged(view: View, newState: Int) {
+                    when (newState) {
+                        BottomSheetBehavior.STATE_HIDDEN -> {
+                        }
+                        BottomSheetBehavior.STATE_EXPANDED -> {
 
-                    }
-                    BottomSheetBehavior.STATE_COLLAPSED -> {
+                        }
+                        BottomSheetBehavior.STATE_COLLAPSED -> {
 
-                    }
-                    BottomSheetBehavior.STATE_DRAGGING -> {
-                    }
-                    BottomSheetBehavior.STATE_SETTLING -> {
-                    }
-                    BottomSheetBehavior.STATE_HALF_EXPANDED -> {
-                        TODO()
+                        }
+                        BottomSheetBehavior.STATE_DRAGGING -> {
+                        }
+                        BottomSheetBehavior.STATE_SETTLING -> {
+                        }
+                        BottomSheetBehavior.STATE_HALF_EXPANDED -> {
+                            TODO()
+                        }
                     }
                 }
-            }
 
-            override fun onSlide(view: View, v: Float) {}
-        })
+                override fun onSlide(view: View, v: Float) {}
+            })
+        }
+
+        private fun getImage(url: String) {
+            Picasso.get()
+                .load(url)
+                .fit()
+                .into(mealImage)
+        }
     }
 
-    private fun getImage(url: String) {
-        Picasso.get()
-            .load(url)
-            .fit()
-            .into(mealImage)
-    }
-}
+

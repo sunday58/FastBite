@@ -1,9 +1,11 @@
 package com.sundaydavid.fastBite.adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -35,6 +37,13 @@ class CategoryAdapter(private val category: List<Category>) :
 
         holder.loadCategoryImage(mealCategory.strCategoryThumb)
         holder.categoryName.text = mealCategory.strCategory
+
+        holder.itemView.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putBoolean("alert", true)
+            bundle.putSerializable("category", mealCategory)
+            Navigation.findNavController(holder.itemView).navigate(R.id.navigation_categoryDetail, bundle)
+        }
 
     }
     inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

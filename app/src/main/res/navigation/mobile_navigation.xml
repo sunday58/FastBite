@@ -35,4 +35,9 @@
         android:label="Meals"
         tools:layout="@layout/fragment_alphabet_list" />
 
+    <fragment
+        android:id="@+id/navigation_categoryDetail"
+        android:name="com.sundaydavid.fastBite.ui.category.CategoryDetails"
+        tools:layout="@layout/fragment_category_details" />
+
 </navigation>

@@ -37,6 +37,15 @@ RecyclerView.Adapter<AlphabetListAdapter.ViewHolder>(){
         holder.alphabetTitle.text = az.strMeal
         holder.alphaMealType.text = az.strCategory
         holder.loadImage(az.strMealThumb)
+
+
+        holder.itemView.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putSerializable("meals", az)
+
+            Navigation.findNavController(holder.itemView).navigate(R.id.navigation_alphabet_detail, bundle)
+        }
+
         
     }
 
@@ -51,11 +60,7 @@ RecyclerView.Adapter<AlphabetListAdapter.ViewHolder>(){
             itemView.setOnClickListener {
                 Snackbar.make(it, alphabetList[adapterPosition].idMeal, Snackbar.LENGTH_SHORT).show()
 
-//                val bundle = Bundle()
-//                val data = AlphabetData(alphabetList[adapterPosition], adapterPosition)
-//                bundle.putSerializable("meals", data)
-//
-//                Navigation.findNavController(itemView).navigate(R.id.navigation_alphabet_detail, bundle)
+
             }
         }
 
