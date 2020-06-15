@@ -34,7 +34,7 @@ class SearchFragment : Fragment() {
     private lateinit var searchViewModel: SearchBaseRepository
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: androidx.appcompat.widget.SearchView
-//    private lateinit var progress: Dialog
+    private lateinit var progress: Dialog
     val  dataList = ArrayList<Meal>()
 
 
@@ -49,10 +49,8 @@ class SearchFragment : Fragment() {
         recyclerView = root.findViewById(R.id.meal_search_recyclerView)
         searchView = root.findViewById(R.id.meal_search)
 
-//        progress = root.findViewById(R.id.progress_bar)
-//        progress.settype(Type.WEDGES)
-//        progress.setdurationTime(100)
-//        progress.show()
+        progress = root.findViewById(R.id.progress_bar)
+
 
         recyclerView.layoutManager = LinearLayoutManager(parentFragment?.context,
             LinearLayoutManager.VERTICAL, false)
@@ -65,6 +63,9 @@ class SearchFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                progress.settype(Type.WEDGES)
+                progress.setdurationTime(100)
+                progress.show()
                 getMealList(newText!!)
                 return true
             }
@@ -78,22 +79,23 @@ class SearchFragment : Fragment() {
         ApiClient.getClient.SearchMeal(meal).enqueue(object : Callback<SearchModel> {
             override fun onResponse(call: Call<SearchModel>, response: Response<SearchModel>) {
 
-                if (response.isSuccessful && response.body() != null){
+                if (response.isSuccessful && response.body()?.meals != null){
                     dataList += response.body()!!.meals
 
                     recyclerView.adapter = SearchMealAdapter(activity!!.applicationContext, dataList)
                     recyclerView.adapter?.notifyDataSetChanged()
-//                    progress.isVisible = false
+                    progress.isVisible = false
                 }
 
                 else {
                     Toast.makeText(context, "Item not found", Toast.LENGTH_SHORT).show()
+                    progress.isVisible = false
                 }
             }
 
             override fun onFailure(call: Call<SearchModel>, t: Throwable) {
                 t.message
-//                progress.isVisible = false
+                progress.isVisible = false
             }
         })
     }
