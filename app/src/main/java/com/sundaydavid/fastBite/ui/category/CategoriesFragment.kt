@@ -23,6 +23,11 @@ class CategoriesFragment : Fragment() {
     }
     private lateinit var recyclerView: RecyclerView
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
+    }
+
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,

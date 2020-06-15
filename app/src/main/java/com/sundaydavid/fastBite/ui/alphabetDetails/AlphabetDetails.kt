@@ -188,17 +188,7 @@ class AlphabetDetails : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        activity?.onBackPressedDispatcher?.addCallback(this, object :
-            OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                if (sheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED) {
-                    sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-                }else{
-                    Navigation.findNavController(requireView()).navigate(R.id.navigation_alphabet_list)
-                }
-            }
-        })
+        retainInstance = true
     }
 
         override fun onDestroyView() {

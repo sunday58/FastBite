@@ -33,6 +33,11 @@ class AlphabetList : Fragment() {
     private lateinit var adapter: AlphabetListAdapter
     private lateinit var progress: Dialog
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

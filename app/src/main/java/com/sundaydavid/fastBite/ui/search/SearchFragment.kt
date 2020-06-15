@@ -38,6 +38,11 @@ class SearchFragment : Fragment() {
     val  dataList = ArrayList<Meal>()
 
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
+    }
+
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -50,7 +55,6 @@ class SearchFragment : Fragment() {
         searchView = root.findViewById(R.id.meal_search)
 
         progress = root.findViewById(R.id.progress_bar)
-
 
         recyclerView.layoutManager = LinearLayoutManager(parentFragment?.context,
             LinearLayoutManager.VERTICAL, false)
@@ -85,6 +89,9 @@ class SearchFragment : Fragment() {
                     recyclerView.adapter = SearchMealAdapter(activity!!.applicationContext, dataList)
                     recyclerView.adapter?.notifyDataSetChanged()
                     progress.isVisible = false
+
+                    searchView.setQuery("", false)
+//                    searchView.clearFocus()
                 }
 
                 else {
