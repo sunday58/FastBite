@@ -1,11 +1,13 @@
 package com.sundaydavid.fastBite
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 
 import androidx.appcompat.app.AppCompatActivity
 
 import androidx.core.view.isVisible
+import androidx.navigation.NavController
 
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
@@ -13,16 +15,20 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
-        val navController = findNavController(R.id.nav_host_fragment)
+         navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(setOf(
@@ -60,6 +66,33 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onBackPressed() {
+        if (navController.currentDestination!!.id == R.id.navigation_az)
+            showDialog()
+        else if (navController.currentDestination!!.id == R.id.navigation_category ||
+            navController.currentDestination!!.id == R.id.navigation_search)
+            navController.navigate(R.id.navigation_az)
+        else
+            super.onBackPressed()
+    }
+
+    private fun showDialog() {
+        val dialog = MaterialAlertDialogBuilder(this@MainActivity)
+        dialog.setTitle("Exiting?")
+        dialog.setIcon(R.drawable.ic_close_black_24dp)
+        dialog.setMessage("Are you sure you want to exit?")
+            .setPositiveButton(
+                "YES"
+            ) { dialogInterface: DialogInterface, _: Int ->
+                dialogInterface.dismiss()
+                exitProcess(0)
+            }
+            .setNegativeButton(
+                "NO"
+            ) { dialogInterface: DialogInterface, _: Int -> dialogInterface.dismiss() }
+        dialog.create().show()
     }
 
     private fun hideCustomToolBar() {
