@@ -10,7 +10,9 @@ import android.widget.Adapter
 import android.widget.LinearLayout
 import android.widget.TextClock
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.github.siyamed.shapeimageview.mask.PorterShapeImageView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -182,6 +184,21 @@ class AlphabetDetails : Fragment() {
         setState()
 //        initYouTube()
         return root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        activity?.onBackPressedDispatcher?.addCallback(this, object :
+            OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (sheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED) {
+                    sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                }else{
+                    Navigation.findNavController(requireView()).navigate(R.id.navigation_alphabet_list)
+                }
+            }
+        })
     }
 
         override fun onDestroyView() {
