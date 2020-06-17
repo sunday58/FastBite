@@ -41,7 +41,6 @@ class SearchFragment : Fragment() {
     private lateinit var progress: Dialog
     val  dataList = ArrayList<Meal>()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
@@ -79,7 +78,7 @@ class SearchFragment : Fragment() {
                     getMealList(newText!!)
 
                 }else {
-                    Navigation.findNavController(recyclerView).navigate(R.id.navigation_network)
+                    Toast.makeText(context, "Check network", Toast.LENGTH_SHORT).show()
                 }
                 return true
             }
