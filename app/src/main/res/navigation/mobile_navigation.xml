@@ -40,4 +40,9 @@
         android:name="com.sundaydavid.fastBite.ui.category.CategoryDetails"
         tools:layout="@layout/fragment_category_details" />
 
+    <fragment
+        android:id="@+id/navigation_network"
+        android:name="com.sundaydavid.fastBite.utility.NetworkFragment"
+        tools:layout="@layout/fragment_network" />
+
 </navigation>

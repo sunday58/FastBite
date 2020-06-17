@@ -50,7 +50,8 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.navigation_alphabet_detail,
                 R.id.navigation_alphabet_list,
-                R.id.navigation_categoryDetail -> run {
+                R.id.navigation_categoryDetail,
+                R.id.navigation_network -> run {
                     hideCustomToolBar()
                     hideBottomNav()
                     return@run

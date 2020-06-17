@@ -82,4 +82,7 @@ dependencies {
     // Room database
     implementation "androidx.room:room-runtime:2.2.5"
     kapt "androidx.room:room-compiler:2.2.5"
+
+    //load gif
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
 }

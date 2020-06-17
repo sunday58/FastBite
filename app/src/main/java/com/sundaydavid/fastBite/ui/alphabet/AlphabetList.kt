@@ -1,5 +1,9 @@
 package com.sundaydavid.fastBite.ui.alphabet
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -60,7 +64,7 @@ class AlphabetList : Fragment() {
 
        if (arguments != null){
            var mealName = arguments!!.getString("meal")
-           setData(mealName!!)
+               setData(mealName!!)
        }
 
         return root
@@ -85,13 +89,14 @@ class AlphabetList : Fragment() {
 
             override fun onFailure(call: Call<AlphabetModel>, t: Throwable) {
                 System.out.println("Error " + t.localizedMessage)
-                Toast.makeText(activity, t.localizedMessage, Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, "Check network connection", Toast.LENGTH_LONG).show()
                 progress.isVisible = false
             }
         })
 
 
         }
+
 
     }
 
