@@ -1,5 +1,8 @@
 package com.sundaydavid.fastBite.ui.search
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fevziomurtekin.customprogress.Dialog
@@ -67,10 +71,16 @@ class SearchFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                progress.settype(Type.WEDGES)
-                progress.setdurationTime(100)
-                progress.show()
-                getMealList(newText!!)
+
+                if (isOnline(requireContext())){
+                    progress.settype(Type.WEDGES)
+                    progress.setdurationTime(100)
+                    progress.show()
+                    getMealList(newText!!)
+
+                }else {
+                    Navigation.findNavController(recyclerView).navigate(R.id.navigation_network)
+                }
                 return true
             }
         })
@@ -84,14 +94,16 @@ class SearchFragment : Fragment() {
             override fun onResponse(call: Call<SearchModel>, response: Response<SearchModel>) {
 
                 if (response.isSuccessful && response.body()?.meals != null){
-                    dataList += response.body()!!.meals
 
-                    recyclerView.adapter = SearchMealAdapter(activity!!.applicationContext, dataList)
-                    recyclerView.adapter?.notifyDataSetChanged()
-                    progress.isVisible = false
+                        dataList += response.body()!!.meals
 
-                    searchView.setQuery("", false)
+                        recyclerView.adapter = SearchMealAdapter(activity!!.applicationContext, dataList)
+                        recyclerView.adapter?.notifyDataSetChanged()
+                        progress.isVisible = false
+
+                        searchView.setQuery("", false)
 //                    searchView.clearFocus()
+
                 }
 
                 else {
@@ -105,6 +117,34 @@ class SearchFragment : Fragment() {
                 progress.isVisible = false
             }
         })
+    }
+
+    fun isOnline(context: Context): Boolean {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE)
+                as ConnectivityManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            val capabilities =  connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+            if (capabilities != null) {
+                when {
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
+                        return true
+                    }
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)-> {
+                        return true
+                    }
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
+                        return true
+                    }
+                }
+            }
+        } else {
+            val activeNetworkInfo = connectivityManager.activeNetworkInfo
+            if (activeNetworkInfo != null && activeNetworkInfo.isConnected){
+                return true
+            }
+        }
+
+        return false
     }
 
 

@@ -1,6 +1,9 @@
 package com.sundaydavid.fastBite.adapter
 
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,6 +33,8 @@ class SearchMealAdapter(private val context: Context,
                 holder.loadSearchImage(data.strMealThumb)
                 holder.searchTitle.text = data.strMeal
                 holder.searchType.text = data.strCategory
+
+
 
                 holder.itemView.setOnClickListener {
 
