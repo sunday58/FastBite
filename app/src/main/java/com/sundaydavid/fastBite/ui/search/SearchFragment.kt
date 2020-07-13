@@ -16,6 +16,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -52,7 +53,7 @@ class SearchFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         searchViewModel =
-                ViewModelProviders.of(this).get(SearchBaseRepository::class.java)
+                ViewModelProvider(this).get(SearchBaseRepository::class.java)
         val root = inflater.inflate(R.layout.fragment_search, container, false)
         recyclerView = root.findViewById(R.id.meal_search_recyclerView)
         searchView = root.findViewById(R.id.meal_search)
