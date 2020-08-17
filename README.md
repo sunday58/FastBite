@@ -9,6 +9,18 @@ A food recipe App for cooking different varieties of meals
 ![Screenshot_20200817-213435](https://user-images.githubusercontent.com/46400048/90442196-29f69000-e0d2-11ea-85cc-0bf5b3fd942f.png)
 ![Screenshot_20200817-213508](https://user-images.githubusercontent.com/46400048/90442197-2a8f2680-e0d2-11ea-828e-13f144ee9c9c.png)
 
+## BUILT WITH
+* Retrofit 2.6.0
+* Live Data
+* Coroutine
+* Repository Pattern
+* MVVM architecture
+* Androidx
+* Material design components
+* Kotlin
+* Kotlin Flow
+* Room
+
 ## INSTALLATION
 Download on [playstore](http://comingsoon.com)
 
