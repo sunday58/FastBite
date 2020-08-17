@@ -10,5 +10,5 @@ A food recipe App for cooking different varieties of meals
 ![Screenshot_20200817-213508](https://user-images.githubusercontent.com/46400048/90442197-2a8f2680-e0d2-11ea-828e-13f144ee9c9c.png)
 
 ## INSTALLATION
-Download on playstore [playstore](http://comingsoon.com)
+Download on [playstore](http://comingsoon.com)
 
