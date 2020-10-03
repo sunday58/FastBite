@@ -29,6 +29,7 @@
             android:layout_gravity="center|start"
             android:layout_marginStart="16dp"
             android:textColor="@color/white"
+            android:background="@color/colorPrimary"
             android:textSize="18sp"
             android:textStyle="bold"
             android:fontFamily="@font/sanchez"
