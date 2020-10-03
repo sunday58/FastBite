@@ -22,5 +22,5 @@ A food recipe App for cooking different varieties of meals
 * Room
 
 ## INSTALLATION
-Download on [playstore](http://comingsoon.com)
+Download on [playstore](https://play.google.com/store/apps/details?id=com.sundaydavid.fastBite)
 
