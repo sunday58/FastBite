@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginStart="8dp"
     android:layout_marginTop="12dp"
     android:layout_marginEnd="8dp"
@@ -25,12 +25,12 @@
             android:background="@drawable/rownded_textview"
             android:fontFamily="@font/lily_script_one"
             android:gravity="center"
-            android:text="A"
             android:textColor="@color/pink"
             android:textSize="42sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="A"/>
 
         <TextView
             android:id="@+id/alphabet_detail"
@@ -43,7 +43,6 @@
             android:gravity="center_horizontal"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            android:text="Meals that begins with A"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textAlignment="center"
@@ -51,7 +50,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/alphabet_text" />
+            app:layout_constraintTop_toBottomOf="@+id/alphabet_text"
+            tools:text="Meals that begins with A"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

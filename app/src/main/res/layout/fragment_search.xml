@@ -28,7 +28,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/lily_script_one"
-                android:text="Cook your Meal with Ease"
+                android:text="@string/cook_your_meal_with_ease"
                 android:textColor="@color/white" />
 
             <TextView
@@ -37,7 +37,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/lily_script_one"
-                android:text="Anytime anywhere in your Country" />
+                android:text="@string/anytime_anywhere_in_your_country" />
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/meal_search"
@@ -50,7 +50,8 @@
                 app:defaultQueryHint="Search meal"
                 app:iconifiedByDefault="false"
                 app:queryBackground="@android:color/transparent"
-                app:queryHint="A - Z" />
+                app:queryHint="A - Z"
+                android:focusable="true" />
         </LinearLayout>
 
     </FrameLayout>

@@ -40,8 +40,8 @@
             android:layout_gravity="center"
             android:fontFamily="@font/sanchez"
             android:gravity="center"
-            android:text="CHICKEN PEPPER SOUP"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/colorAccent"
+            tools:text="CHICKEN PEPPER SOUP"/>
     </com.google.android.material.card.MaterialCardView>
 
     <FrameLayout
@@ -85,9 +85,9 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/sanchez"
-                        android:text="INGREDIENT"
                         android:textColor="@color/colorAccent"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:text="INGREDIENT"/>
 
                     <TextView
                         android:id="@+id/ingredient_detail"
@@ -98,7 +98,7 @@
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="8dp"
                         android:fontFamily="@font/sanchez"
-                        android:text="Pepper, Maggi, Salt, Vegetable, Goat Meat, Fresh Fish, CrayFish" />
+                        tools:text="Pepper, Maggi, Salt, Vegetable, Goat Meat, Fresh Fish, CrayFish"/>
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -124,9 +124,9 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/sanchez"
-                        android:text="DIRECTIONS"
                         android:textColor="@color/colorAccent"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:text="DIRECTIONS"/>
 
                     <TextView
                         android:id="@+id/direction_detail"
@@ -136,7 +136,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="8dp"
                         android:fontFamily="@font/sanchez"
-                        android:text="Boil water and wait for 15 minutes.\nDry the chicken for minutes." />
+                        tools:text="Boil water and wait for 15 minutes.\nDry the chicken for minutes." />
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>

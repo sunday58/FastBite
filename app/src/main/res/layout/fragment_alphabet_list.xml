@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/background"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/go_back"
@@ -20,7 +21,8 @@
         android:src="@drawable/ic_logout"
         android:layout_gravity="start"
         android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"/>
+        android:layout_marginStart="8dp"
+        tools:ignore="ContentDescription" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="100dp"

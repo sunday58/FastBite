@@ -38,7 +38,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Oops!, No network connection!"
+            android:text="@string/oops_no_network_connection"
             android:fontFamily="@font/sanchez"
             android:textColor="@color/white"/>
 
