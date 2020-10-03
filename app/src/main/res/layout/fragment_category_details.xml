@@ -32,23 +32,23 @@
        android:id="@+id/category_detail_title"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:text="Chicken"
        android:gravity="center_horizontal"
        android:textColor="@color/colorAccent"
        android:textSize="18sp"
        android:layout_marginTop="12dp"
-       android:fontFamily="@font/sanchez"/>
+       android:fontFamily="@font/sanchez"
+       tools:text="Chicken"/>
 
     <TextView
         android:id="@+id/category_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="This is a unique meal that is a delicacy ebry where in the world"
        android:layout_marginStart="12dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/sanchez"/>
+        android:fontFamily="@font/sanchez"
+        tools:text="This is a unique meal that is a delicacy ebry where in the world"/>
 
     </LinearLayout>
     </androidx.core.widget.NestedScrollView>
