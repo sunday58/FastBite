@@ -14,10 +14,8 @@ import retrofit2.Response
 class AlphabetListViewModel(mealRepository: MealRepository) : ViewModel() {
 
     private val repository = mealRepository
-
     private val _meal = MutableLiveData<ArrayList<Meal>>()
     val meal: LiveData<ArrayList<Meal>> = _meal
-
     private val _showProgress = MutableLiveData<Boolean>()
     val showProgress: LiveData<Boolean> = _showProgress
 
