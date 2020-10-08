@@ -8,28 +8,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListAdapter
-import android.widget.SearchView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fevziomurtekin.customprogress.Dialog
 import com.fevziomurtekin.customprogress.Type
 import com.sundaydavid.fastBite.R
-import com.sundaydavid.fastBite.adapter.AlphabetListAdapter
 import com.sundaydavid.fastBite.adapter.SearchMealAdapter
 import com.sundaydavid.fastBite.model.Meal
 import com.sundaydavid.fastBite.model.SearchModel
 import com.sundaydavid.fastBite.remoteDatabase.ApiClient
-import com.sundaydavid.fastBite.utility.CellClickListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -90,7 +81,7 @@ class SearchFragment : Fragment() {
 
     fun getMealList(meal: String) {
 
-        ApiClient.getClient.SearchMeal(meal).enqueue(object : Callback<SearchModel> {
+        ApiClient.getClient.searchMeal(meal).enqueue(object : Callback<SearchModel> {
             override fun onResponse(call: Call<SearchModel>, response: Response<SearchModel>) {
 
                 if (response.isSuccessful && response.body()?.meals != null){

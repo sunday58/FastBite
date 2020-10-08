@@ -1,9 +1,5 @@
 package com.sundaydavid.fastBite.ui.alphabet
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,11 +20,7 @@ import com.fevziomurtekin.customprogress.Type
 import com.sundaydavid.fastBite.R
 import com.sundaydavid.fastBite.adapter.AlphabetListAdapter
 import com.sundaydavid.fastBite.remoteDatabase.ApiClient
-import com.sundaydavid.fastBite.model.AlphabetModel
-import com.sundaydavid.fastBite.model.Meal
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.sundaydavid.fastBite.repository.MealRepository
 
 /**
  * A simple [Fragment] subclass.
@@ -34,8 +28,10 @@ import retrofit2.Response
 class AlphabetList : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: AlphabetListAdapter
     private lateinit var progress: Dialog
+    private lateinit var goBack: ImageView
+    private lateinit var alphabetListViewModel: AlphabetListViewModel
+    private lateinit var alphabetListViewModelFactory: AlphabetListViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,58 +43,62 @@ class AlphabetList : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.fragment_alphabet_list, container, false)
+        return inflater.inflate(R.layout.fragment_alphabet_list, container, false)
+    }
 
-        progress = root.findViewById(R.id.progress_bar)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        progress = view.findViewById(R.id.progress_bar)
+        goBack = view.findViewById(R.id.go_back)
+        recyclerView = view.findViewById(R.id.az_list_recyclerView)
+        alphabetListViewModelFactory = AlphabetListViewModelFactory(MealRepository(ApiClient.getClient))
+        alphabetListViewModel = ViewModelProvider(this, alphabetListViewModelFactory).get(AlphabetListViewModel::class.java)
+
+        //Go Back
+        goBack.setOnClickListener { v: View ->
+            Navigation.findNavController(v).navigate(R.id.navigation_az)
+        }
+
+        if (arguments != null) {
+            val mealName = arguments!!.getString("meal")
+            alphabetListViewModel.setData(mealName!!)
+        }
+
+        setupProgressBar()
+        observeMeal()
+        observeProgress()
+        setupRv()
+    }
+
+    private fun setupProgressBar() {
         progress.settype(Type.WEDGES)
         progress.setdurationTime(100)
         progress.show()
-
-        //goback
-        val goback = root.findViewById<ImageView>(R.id.go_back)
-        goback.setOnClickListener { view: View ->
-            Navigation.findNavController(view).navigate(R.id.navigation_az)
-        }
-        recyclerView = root.findViewById(R.id.az_list_recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(parentFragment?.context, LinearLayoutManager.VERTICAL, false)
-
-       if (arguments != null){
-           var mealName = arguments!!.getString("meal")
-               setData(mealName!!)
-       }
-
-        return root
     }
 
-    fun setData(query: String){
-    val call: Call<AlphabetModel> = ApiClient.getClient.meal(query)
+    private fun setupRv() {
+        recyclerView.adapter?.notifyDataSetChanged()
+        recyclerView.layoutManager = LinearLayoutManager(parentFragment?.context, LinearLayoutManager.VERTICAL, false)
+    }
 
-        call.enqueue(object : Callback<AlphabetModel>{
-
-            override fun onResponse(call: Call<AlphabetModel>, response: Response<AlphabetModel>) {
-
-                val dataList = ArrayList<Meal>()
-//                response.body()?.meals.let { dataList.add(it) }
-                dataList += (response.body()!!.meals)
-                Log.d("Meals ", response.body().toString())
-
-                recyclerView.adapter = AlphabetListAdapter(dataList)
-                recyclerView.adapter?.notifyDataSetChanged()
-                progress.isVisible = false
-            }
-
-            override fun onFailure(call: Call<AlphabetModel>, t: Throwable) {
-                System.out.println("Error " + t.localizedMessage)
+    private fun observeMeal() {
+        alphabetListViewModel.meal.observe(viewLifecycleOwner, Observer { meals ->
+            if (meals != null) {
+                recyclerView.adapter = AlphabetListAdapter(meals)
+                Log.d("Meals ", meals.toString())
+            } else {
                 Toast.makeText(activity, "Check network connection", Toast.LENGTH_LONG).show()
-                progress.isVisible = false
             }
         })
-
-
-        }
-
-
     }
+
+    private fun observeProgress() {
+        alphabetListViewModel.showProgress.observe(viewLifecycleOwner, Observer { show ->
+                progress.isVisible = show
+        })
+    }
+}
 
 
 
